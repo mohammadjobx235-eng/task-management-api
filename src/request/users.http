@@ -1,0 +1,45 @@
+
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoibW9oYW1tYWQudGVzdEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjc5NjkzOCwiZXhwIjoxNzkyODAwNTM4fQ.wQi_qcJiN0dEFZCl3NYbFXd7RziLXkmYspXQ5RUyR6g
+@userId = 3
+
+### 1. عرض المستخدم الحالي
+GET {{baseUrl}}/users
+Authorization: Bearer {{token}}
+
+###
+
+### 2. عرض مستخدم حسب ID
+GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
+
+###
+
+### 3. تعديل بيانات المستخدم
+PATCH {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstname": "Mohammad Updated",
+  "lastname": "Alrahhal"
+}
+
+###
+
+### 4. اختبار البريد الإلكتروني غير الصحيح - المتوقع 400
+PATCH {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "email": "not-an-email"
+}
+
+###
+
+### 5. حذف المستخدم - لا تنفذه الآن
+# تحذير: هذا الطلب يحذف المستخدم فعلياً.
+# اتركه معلقاً حتى ننتهي من بقية الاختبارات.
+# DELETE {{baseUrl}}/users/{{userId}}
+# Authorization: Bearer {{token}}

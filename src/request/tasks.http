@@ -1,0 +1,72 @@
+
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoibW9oYW1tYWQudGVzdEBleGFtcGxlLmNvbSIsImlhdCI6MTc5Mjc5NzQzMCwiZXhwIjoxNzkyODAxMDMwfQ.ITvZpAaHVywMwSVUQ6z_Zvqab97eRHhEwoGvR1wcyfw
+@taskId = 6
+
+### 1. إنشاء مهمة جديدة
+POST {{baseUrl}}/tasks
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Learn NestJS",
+  "description": "Complete Task Management API",
+  "completed": false
+}
+
+###
+
+### 2. عرض جميع مهامي
+GET {{baseUrl}}/tasks
+Authorization: Bearer {{token}}
+
+###
+
+### 3. عرض مهمة واحدة
+GET {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
+
+###
+
+### 4. تعديل عنوان المهمة
+PATCH {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Learn NestJS Professionally"
+}
+
+###
+
+### 5. إكمال المهمة
+PATCH {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "completed": true
+}
+
+###
+
+### 6. اختبار التحقق من البيانات - المتوقع 400
+POST {{baseUrl}}/tasks
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "AB",
+  "completed": "yes"
+}
+
+###
+
+### 7. اختبار الوصول دون توكن - المتوقع 401
+GET {{baseUrl}}/tasks
+
+###
+
+### 8. حذف المهمة - نفذه بعد انتهاء الاختبارات فقط
+# DELETE {{baseUrl}}/tasks/{{taskId}}
+# Authorization: Bearer {{token}}

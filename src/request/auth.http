@@ -1,0 +1,48 @@
+
+@baseUrl = http://localhost:3000
+
+### 1. تسجيل مستخدم جديد
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "firstname": "Mohammad",
+  "lastname": "Alrahhal",
+  "email": "mohammad.test@example.com",
+  "password": "StrongPass123"
+}
+
+###
+
+### 2. تسجيل الدخول
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "mohammad.test@example.com",
+  "password": "StrongPass123"
+}
+
+###
+
+### 3. اختبار كلمة مرور خاطئة - المتوقع 401
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "mohammad.test@example.com",
+  "password": "WrongPass123"
+}
+
+###
+
+### 4. اختبار التسجيل بالبريد نفسه - المتوقع 409
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "firstname": "Mohammad",
+  "lastname": "Alrahhal",
+  "email": "mohammad.test@example.com",
+  "password": "StrongPass123"
+}
